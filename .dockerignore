@@ -1,0 +1,10 @@
+//.gitignore
+
+Dockerfile
+build
+node_modules
+package-lock.json
+dist
+data
+.gitignore
+.git

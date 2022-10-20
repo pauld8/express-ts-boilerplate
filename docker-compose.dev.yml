@@ -1,0 +1,29 @@
+version: '3'
+
+# services:
+# db:
+#   container_name: ChatAppMongo
+#   image: mongo:latest
+#   restart: always
+#   volumes:
+#     - ./data/dev/mongodb:/data/db
+#   environment:
+#     - MONGO_INITDB_DATABASE= Pokemon
+#   networks:
+#     - default
+#   ports:
+#     - 27019:2701
+# redis:
+#   container_name: AppRedis
+#   command: 'redis-server --requirepass 123456'
+#   image: redis
+#   ports:
+#     - '6380:6379'
+#   networks:
+#     - default
+
+networks:
+  default:
+    driver: bridge
+    name: app_network
+    external: true

@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  # database:
+  #   container_name: ChatAppMongo
+  #   image: mongo:latest
+  #   restart: always
+  #   volumes:
+  #     - '~/data/mongodb:/data/db'
+  #   networks:
+  #     - chatapp
+  #   ports:
+  #     - 27017:27017
+  server:
+    container_name: Server
+    # image: chatapp-server
+    build:
+      context: .
+      dockerfile: build/Node
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./.env.production
+    networks:
+      - default
+    volumes:
+      - '~/logs:/logs'
+    ports:
+      - 8080:3000
+  # redis:
+  #   container_name: AppRedis
+  #   command: 'redis-server --requirepass 123456'
+  #   image: redis
+  #   ports:
+  #     - '6380:6379'
+  #   networks:
+  #     - default
+
+networks:
+  default:
+    driver: bridge
+    name: app_network
+    external: true
